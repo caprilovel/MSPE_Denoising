@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../local/storage/ding"
+		},
+		{
+			"path": "../ts_forecast"
+		}
+	],
+	"settings": {}
+}
