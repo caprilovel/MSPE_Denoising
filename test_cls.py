@@ -74,10 +74,10 @@ model.load_state_dict(torch.load('./model_save/cls_model.pth'))
 model = model.cuda()
 
 
-from model.mpmtransformer import mpmtransformer
-denoised_model = mpmtransformer()
-denoised_model.load_state_dict(torch.load('./model_save/mpmtransformer/mpmtransformer_199_emb_intensity-4.pth'))
-denoised_model = denoised_model.cuda()
+# from model.mpmtransformer import mpmtransformer
+# denoised_model = mpmtransformer()
+# denoised_model.load_state_dict(torch.load('./model_save/mpmtransformer/mpmtransformer_199_emb_intensity-4.pth'))
+# denoised_model = denoised_model.cuda()
 
 # from model.UNet import UNet
 # denoised_model1 = UNet()
@@ -95,26 +95,106 @@ denoised_model = denoised_model.cuda()
 # denoised_model2.load_state_dict(torch.load('./model_save/Seq2Seq2/Seq2Seq2_99_emb_intensity-4.pth'))
 # denoised_model2 = denoised_model2.cuda()
 
-# from model.ralenet import ralenet
-# denoised_model3 = ralenet(high_level_enhence=True)
-# denoised_model3.load_state_dict(torch.load('./model_save/ralenet/ralenet_99_emb_intensity-4.pth'))
-# denoised_model3 = denoised_model3.cuda()
+from model.ralenet import ralenet
+denoised_model3 = ralenet(high_level_enhence=True)
+denoised_model3.load_state_dict(torch.load('./model_save/ralenet/ralenet_99_emb_intensity-4.pth'))
+denoised_model3 = denoised_model3.cuda()
 
 # from model.ACDAE import ACDAE
 # denoised_model4 = ACDAE()
 # denoised_model4.load_state_dict(torch.load('./model_save/ACDAE/ACDAE_99_emb_intensity-4.pth'))
 # denoised_model4 = denoised_model4.cuda()
 
-# from model.transformer import ralenet
-# denoised_model5 = ralenet()
-# denoised_model5.load_state_dict(torch.load('./model_save/ralenet_nra/ralenet_nra_99_emb_intensity-4.pth'))
-# denoised_model5 = denoised_model5.cuda()
+from model.transformer import ralenet
+denoised_model5 = ralenet()
+denoised_model5.load_state_dict(torch.load('./model_save/ralenet_nra/ralenet_nra_99_emb_intensity-4.pth'))
+denoised_model5 = denoised_model5.cuda()
 
-# from model.ralenet import ralenet
-# denoised_model6 = ralenet(low_level_enhence=False)
-# denoised_model6.load_state_dict(torch.load('./model_save/ralenet_mlp/ralenet_mlp_99_emb_intensity-4.pth'))
-# denoised_model6 = denoised_model6.cuda()
+from model.ralenet import ralenet
+denoised_model6 = ralenet(low_level_enhence=False)
+denoised_model6.load_state_dict(torch.load('./model_save/ralenet_mlp/ralenet_mlp_99_emb_intensity-4.pth'))
+denoised_model6 = denoised_model6.cuda()
 
+
+
+
+
+
+# 选择可视化样本
+sample_idx = 0
+
+# 获取原始信号
+clean_ecg = test_dataset[sample_idx][0].squeeze()
+
+# 获取加噪信号 
+noised_ecg = noised_test_dataset[sample_idx][0].squeeze()
+
+# 存储各模型输出
+denoised_results = {}
+
+# 生成降噪信号
+with torch.no_grad():
+    input_tensor = torch.from_numpy(noised_ecg).unsqueeze(0).float().cuda()  # 添加batch维度
+    # print(input_tensor)
+    # 对每个降噪模型进行处理
+    models = {
+
+        'mpmtransformer': denoised_model3,
+        # 'ralenet_nra': denoised_model5,
+        # 'ralenet_mlp': denoised_model6,
+    }
+    
+    for name, model in models.items():
+        
+        output = model(input_tensor)  
+        denoised_results[name] = output.squeeze().cpu().numpy()
+import matplotlib.pyplot as plt
+# 创建对比图
+plt.figure(figsize=(15, 12))
+line_width = 5
+font_size = 20
+# 原始信号
+plt.subplot(len(models)+2, 1, 1)
+print(clean_ecg.shape)
+plt.plot(clean_ecg[0], color='#1f77b4', label='Clean ECG', linewidth=line_width)
+# plt.legend(loc='upper right')
+plt.ylabel('Amplitude', fontsize=font_size)
+plt.title('Original Clean Signal', fontsize=font_size)
+
+# 加噪信号
+plt.subplot(len(models)+2, 1, 2)
+plt.plot(noised_ecg[0], color='#ff7f0e', label='Noised ECG', linewidth=line_width)
+# plt.legend(loc='upper right')
+plt.ylabel('Amplitude', fontsize=font_size)
+plt.title('Noised Signal', fontsize=font_size)
+
+# 各模型降噪结果
+for idx, (name, ecg) in enumerate(denoised_results.items(), 3):
+    plt.subplot(len(models)+2, 1, idx)
+    plt.plot(ecg[0], color='#2ca02c', label=f'{name} Denoised', linewidth=line_width)
+    # plt.legend(loc='upper right')
+    plt.ylabel('Amplitude', fontsize=font_size)
+    plt.title(f'Denoised Signal', fontsize=font_size)
+
+plt.xlabel('Sample Points', fontsize=font_size)
+plt.tight_layout()
+plt.savefig('test.png')
+plt.show()
+
+exit()
+
+
+
+
+
+
+
+
+
+
+
+
+# denoised_model = denoised_model5
 with torch.no_grad():
     pred_array = []
     label_array = []

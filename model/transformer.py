@@ -558,7 +558,7 @@ class Transformer1d(nn.Module):
 
 class ralenet(nn.Module):
     def __init__(
-        self, qkv_bias=True, qk_scale=None, attn_drop=0., proj_drop=0., mlp_ratio=4., act_layer=nn.GELU, norm_layer=nn.LayerNorm, local_enhence=False, use_partial=True, use_eca=False, pe='abs', use_checkpoint=False
+        self, in_channels=2, qkv_bias=True, qk_scale=None, attn_drop=0., proj_drop=0., mlp_ratio=4., act_layer=nn.GELU, norm_layer=nn.LayerNorm, local_enhence=False, use_partial=True, use_eca=False, pe='abs', use_checkpoint=False
         ) -> None:
         super().__init__()        
         
@@ -566,13 +566,13 @@ class ralenet(nn.Module):
         heads = [2**(i+1) for i in range(5)]
 
         self.conv1 = nn.Sequential( 
-            nn.Conv1d(2, channels[0], kernel_size=5, padding=2),
+            nn.Conv1d(in_channels, channels[0], kernel_size=5, padding=2),
             nn.LeakyReLU(0.2),
             nn.BatchNorm1d(channels[0]),
         )
         
         self.transconv = nn.Sequential(
-            nn.Conv1d(channels[0], 2, kernel_size=5, padding=2),
+            nn.Conv1d(channels[0], in_channels, kernel_size=5, padding=2),
         )
         
         self.dtransformer1 = nn.Sequential(

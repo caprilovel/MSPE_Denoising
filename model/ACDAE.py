@@ -60,10 +60,10 @@ class DecBlock(nn.Module):
 
 
 class ACDAE(nn.Module):
-    def __init__(self) -> None:
+    def __init__(self, in_channels=2) -> None:
         super(ACDAE, self).__init__()
 
-        channels = [2, 16, 32, 64, 128]
+        channels = [in_channels, 16, 32, 64, 128]
         Kernal_Size = [13, 7, 7, 7]
         self.EncList = nn.ModuleList()
         self.DecList = nn.ModuleList()

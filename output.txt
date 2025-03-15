@@ -235,3 +235,101 @@ mpmtransformer_199_ma_intensity-4:snr:11.179429054260254, rmse:0.314031094312667
 max_snr:12.111124992370605, max_snr_epoch:192, max_rmse:0.2880961298942566, max_rmse_epoch:187
 mpmtransformer_199_ma_intensity-4:snr:11.179429054260254, rmse:0.31403109431266785
 max_snr:12.111124992370605, max_snr_epoch:192, max_rmse:0.2880961298942566, max_rmse_epoch:187
+mpmtransformer_199_emb_intensity-4:snr:10.343978881835938, rmse:0.340096116065979
+max_snr:12.558126449584961, max_snr_epoch:190, max_rmse:0.2711601257324219, max_rmse_epoch:190
+mpmtransformer_199_emb_intensity-4:snr:3.0347118377685547, rmse:0.36573827266693115
+max_snr:3.4036762714385986, max_snr_epoch:171, max_rmse:0.349981427192688, max_rmse_epoch:97
+mpmtransformer_199_emb_intensity-8:snr:5.730437278747559, rmse:0.4722426235675812
+max_snr:5.795685768127441, max_snr_epoch:163, max_rmse:0.4696945548057556, max_rmse_epoch:163
+mpmtransformer_199_emb_intensity-4:snr:7.1128034591674805, rmse:0.40235742926597595
+max_snr:7.160085678100586, max_snr_epoch:190, max_rmse:0.4006296396255493, max_rmse_epoch:190
+mpmtransformer_199_emb_intensity0:snr:8.318552017211914, rmse:0.3495429754257202
+max_snr:8.3999605178833, max_snr_epoch:91, max_rmse:0.34701111912727356, max_rmse_epoch:91
+ACDAE_99_emb_intensity-8:snr:5.5357489585876465, rmse:0.48068907856941223
+max_snr:5.575345993041992, max_snr_epoch:92, max_rmse:0.47928279638290405, max_rmse_epoch:92
+mpmtransformer_199_emb_intensity8:snr:10.518680572509766, rmse:0.27496999502182007
+max_snr:10.542609214782715, max_snr_epoch:158, max_rmse:0.27439913153648376, max_rmse_epoch:158
+mpmtransformer_199_emb_intensity4:snr:9.704577445983887, rmse:0.3001134395599365
+max_snr:9.785625457763672, max_snr_epoch:125, max_rmse:0.2976802885532379, max_rmse_epoch:125
+ACDAE_199_emb_intensity0:snr:7.977902412414551, rmse:0.36467334628105164
+max_snr:7.987670421600342, max_snr_epoch:183, max_rmse:0.36386823654174805, max_rmse_epoch:183
+ACDAE_99_em_intensity-8:snr:5.578894138336182, rmse:0.4789891242980957
+max_snr:5.714267730712891, max_snr_epoch:95, max_rmse:0.472225159406662, max_rmse_epoch:95
+ralenet_99_emb_intensity-8:snr:5.781002044677734, rmse:0.4664475619792938
+max_snr:5.912069797515869, max_snr_epoch:50, max_rmse:0.4605467617511749, max_rmse_epoch:50
+ralenet_99_emb_intensity-4:snr:7.09265661239624, rmse:0.40119197964668274
+max_snr:7.293005466461182, max_snr_epoch:69, max_rmse:0.39245444536209106, max_rmse_epoch:69
+ralenet_99_emb_intensity0:snr:8.869132995605469, rmse:0.3285222351551056
+max_snr:8.929149627685547, max_snr_epoch:70, max_rmse:0.3258713185787201, max_rmse_epoch:70
+ralenet_99_emb_intensity4:snr:10.218302726745605, rmse:0.2826472222805023
+max_snr:10.267160415649414, max_snr_epoch:84, max_rmse:0.2809818685054779, max_rmse_epoch:84
+mpmtransformer_199_emb_intensity-4:snr:7.1128034591674805, rmse:0.40235742926597595
+max_snr:7.160085678100586, max_snr_epoch:190, max_rmse:0.4006296396255493, max_rmse_epoch:190
+DANet_99_emb_intensity-4:snr:6.053256034851074, rmse:0.45468899607658386
+max_snr:6.104604721069336, max_snr_epoch:95, max_rmse:0.45227983593940735, max_rmse_epoch:95
+ralenet_99_emb_intensity4:snr:10.218302726745605, rmse:0.2826472222805023
+max_snr:10.267160415649414, max_snr_epoch:84, max_rmse:0.2809818685054779, max_rmse_epoch:84
+DANet_99_emb_intensity-8:snr:5.227517604827881, rmse:0.49940040707588196
+max_snr:5.274753093719482, max_snr_epoch:95, max_rmse:0.49665483832359314, max_rmse_epoch:95
+ACDAE_99_emb_intensity0:snr:7.803470134735107, rmse:0.3708648681640625
+max_snr:7.810336112976074, max_snr_epoch:94, max_rmse:0.3708648681640625, max_rmse_epoch:99
+DANet_99_emb_intensity0:snr:6.720846176147461, rmse:0.4221082627773285
+max_snr:6.768301010131836, max_snr_epoch:95, max_rmse:0.4200330972671509, max_rmse_epoch:95
+ACDAE_99_emb_intensity0:snr:7.1258368492126465, rmse:0.40212351083755493
+max_snr:7.186133861541748, max_snr_epoch:95, max_rmse:0.3998525142669678, max_rmse_epoch:95
+DANet_99_emb_intensity4:snr:7.170653820037842, rmse:0.40250974893569946
+max_snr:7.1896162033081055, max_snr_epoch:95, max_rmse:0.4019276201725006, max_rmse_epoch:95
+ACDAE_99_emb_intensity0:snr:7.706438064575195, rmse:0.3759572505950928
+max_snr:7.722201347351074, max_snr_epoch:98, max_rmse:0.3754401206970215, max_rmse_epoch:98
+ACDAE_99_emb_intensity4:snr:8.194173812866211, rmse:0.3593060374259949
+max_snr:8.223824501037598, max_snr_epoch:97, max_rmse:0.35806432366371155, max_rmse_epoch:97
+ACDAE_99_emb_intensity-4:snr:6.665823936462402, rmse:0.42300254106521606
+max_snr:6.688108921051025, max_snr_epoch:98, max_rmse:0.42229023575782776, max_rmse_epoch:98
+ACDAE_99_ma_intensity4:snr:8.878218650817871, rmse:0.3313412666320801
+max_snr:8.954347610473633, max_snr_epoch:85, max_rmse:0.3287695348262787, max_rmse_epoch:85
+datransformer_99_emb_intensity-4:snr:12.9874906539917, rmse:0.2014613002538681
+max_snr:13.111797332763672, max_snr_epoch:97, max_rmse:0.19869622588157654, max_rmse_epoch:97
+datransformer_99_emb_intensity-8:snr:11.62950325012207, rmse:0.23739232122898102
+max_snr:11.62950325012207, max_snr_epoch:99, max_rmse:0.23739232122898102, max_rmse_epoch:99
+datransformer_99_emb_intensity-4:snr:12.9874906539917, rmse:0.2014613002538681
+max_snr:13.111797332763672, max_snr_epoch:97, max_rmse:0.19869622588157654, max_rmse_epoch:97
+newmpm_99_emb_intensity0:snr:9.636296272277832, rmse:0.37173429131507874
+max_snr:9.650558471679688, max_snr_epoch:93, max_rmse:0.3714216351509094, max_rmse_epoch:94
+datransformer_99_emb_intensity0:snr:14.298748970031738, rmse:0.17250898480415344
+max_snr:14.556650161743164, max_snr_epoch:88, max_rmse:0.1678324043750763, max_rmse_epoch:88
+datransformer_99_emb_intensity4:snr:15.314471244812012, rmse:0.15292809903621674
+max_snr:15.605671882629395, max_snr_epoch:88, max_rmse:0.1479734629392624, max_rmse_epoch:88
+datransformer_99_emb_intensity0:snr:14.298748970031738, rmse:0.17250898480415344
+max_snr:14.556650161743164, max_snr_epoch:88, max_rmse:0.1678324043750763, max_rmse_epoch:88
+newmpm_99_emb_intensity-8:snr:8.70674991607666, rmse:0.3945166766643524
+max_snr:8.756946563720703, max_snr_epoch:97, max_rmse:0.3937675654888153, max_rmse_epoch:90
+ACDAE_99_emb_intensity-4:snr:6.591672420501709, rmse:0.42633703351020813
+max_snr:6.598117351531982, max_snr_epoch:92, max_rmse:0.42602765560150146, max_rmse_epoch:92
+ralenet_99_emb_intensity4:snr:14.465002059936523, rmse:0.21187616884708405
+max_snr:14.589884757995605, max_snr_epoch:94, max_rmse:0.20967265963554382, max_rmse_epoch:94
+ralenet_99_emb_intensity0:snr:13.028756141662598, rmse:0.2527984082698822
+max_snr:13.226887702941895, max_snr_epoch:96, max_rmse:0.24862942099571228, max_rmse_epoch:96
+ralenet_99_emb_intensity0:snr:13.028756141662598, rmse:0.2527984082698822
+max_snr:13.226887702941895, max_snr_epoch:96, max_rmse:0.24862942099571228, max_rmse_epoch:96
+ralenet_99_emb_intensity-4:snr:12.060746192932129, rmse:0.284005731344223
+max_snr:12.145587921142578, max_snr_epoch:94, max_rmse:0.2815070152282715, max_rmse_epoch:94
+ralenet_99_emb_intensity-2:snr:12.691953659057617, rmse:0.2644256353378296
+max_snr:12.691953659057617, max_snr_epoch:99, max_rmse:0.26417991518974304, max_rmse_epoch:88
+ralenet_99_emb_intensity4:snr:14.465002059936523, rmse:0.21187616884708405
+max_snr:14.589884757995605, max_snr_epoch:94, max_rmse:0.20967265963554382, max_rmse_epoch:94
+newmpm_199_emb_intensity2:snr:5.13304328918457, rmse:0.5689663290977478
+max_snr:5.14774227142334, max_snr_epoch:191, max_rmse:0.568320095539093, max_rmse_epoch:190
+newmpm_199_emb_intensity4:snr:5.229991436004639, rmse:0.5634437203407288
+max_snr:5.238868713378906, max_snr_epoch:186, max_rmse:0.5628224015235901, max_rmse_epoch:186
+mpmtransformer_199_emb_intensity2:snr:13.852632522583008, rmse:0.23376472294330597
+max_snr:13.87269115447998, max_snr_epoch:198, max_rmse:0.2328898310661316, max_rmse_epoch:167
+mpmtransformer_199_emb_intensity4:snr:14.368154525756836, rmse:0.21883702278137207
+max_snr:14.485885620117188, max_snr_epoch:197, max_rmse:0.2159726619720459, max_rmse_epoch:188
+ralenet_99_emb_intensity2:snr:13.860513687133789, rmse:0.22996728122234344
+max_snr:13.892351150512695, max_snr_epoch:90, max_rmse:0.22912976145744324, max_rmse_epoch:90
+ralenet_99_ma_intensity-4:snr:11.580129623413086, rmse:0.2994311451911926
+max_snr:11.645509719848633, max_snr_epoch:97, max_rmse:0.2977653741836548, max_rmse_epoch:98
+ralenet_99_bw_intensity-4:snr:14.617643356323242, rmse:0.2151707112789154
+max_snr:14.617643356323242, max_snr_epoch:99, max_rmse:0.2151707112789154, max_rmse_epoch:99
+ralenet_99_em_intensity-4:snr:12.624629974365234, rmse:0.2667502760887146
+max_snr:12.66676139831543, max_snr_epoch:91, max_rmse:0.2657976746559143, max_rmse_epoch:91

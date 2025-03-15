@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pds
 from torch.utils.data import Dataset
 from einops import reduce, rearrange
-
+import random
 
 class Normalizer(object):
     """Normalizer _summary_
@@ -109,12 +109,47 @@ class Ecg_Dataset(Dataset):
             
         self.data = np.concatenate(data, axis=0)
         self.ground_data = np.load(os.path.join(path, 'ecg.npy'))
-    
+        print(self.data.shape, self.ground_data.shape)
     def __len__(self):
         return self.data.shape[0]
     
     def __getitem__(self, index):
         return self.data[index], self.ground_data[index]
+    
+    
+class EasyDataset(Dataset):
+    def __init__(self, data_path, noise_path, length=256, noise_intensity=0):
+        self.data = np.load(data_path)
+        self.noise_data = np.load(noise_path)
+        
+    def __len__(self):
+        return self.data.shape[0]
+    
+    def __getitem__(self, index):
+        return self.noise_data[index], self.data[index]
+    
+# def add_noise(data, noise, noise_intensity=0):  
+#     # data should be a numpy array size of batch * channels * length
+#     # noise should be a numpy array size of batch * channels * length or batch * length, here length can be a larger number than the length of data
+#     # noise_intensity should be a number in [-4, -2, 0, 2, 4]
+#     # noise_intensity is the SNR of the noise
+#     # the noise should be normalized
+#     assert len(data.shape) == 3, "data should be a numpy array size of batch * channels * length"
+#     assert len(noise.shape) == 3 or len(noise.shape) == 2, "noise should be a numpy array size of batch * channels * length or batch * length"
+#     if len(noise.shape) == 2:
+#         noise = np.expand_dims(noise, axis=1)
+#     if noise.shape[-1] > data.shape[-1]:
+        
+#         noise = noise[:, :, :data.shape[-1]]
+    
+class ECG_Dataset_with_path(Dataset):
+    def __init__(self, noise_path, ecg_path, length=256, noise_intensity=0):
+        super().__init__()
+        data = []
+        
+
+
+
 
 if __name__ == "__main__":
     dataset = Ecg_Dataset(noise_name=['bw', 'em'])

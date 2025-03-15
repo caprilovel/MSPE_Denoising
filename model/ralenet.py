@@ -594,7 +594,7 @@ class MultiPatchChannelOutEmbedding(nn.Module):
 
 class ralenet(nn.Module):
     def __init__(
-        self, qkv_bias=True, qk_scale=None, attn_drop=0., proj_drop=0., mlp_ratio=4., act_layer=nn.GELU, norm_layer=nn.LayerNorm,  use_partial=True, use_eca=False, pe='abs', use_checkpoint=False, low_level_enhence=True, high_level_enhence=False
+        self, in_channels=2, qkv_bias=True, qk_scale=None, attn_drop=0., proj_drop=0., mlp_ratio=4., act_layer=nn.GELU, norm_layer=nn.LayerNorm,  use_partial=True, use_eca=False, pe='abs', use_checkpoint=False, low_level_enhence=True, high_level_enhence=False
         ) -> None:
         super().__init__()        
         
@@ -611,8 +611,8 @@ class ralenet(nn.Module):
         #     nn.Conv1d(channels[0], 2, kernel_size=3, padding=1),
         # )
         
-        self.conv1 = MultiPatchChannelInEmbedding(2, 2)
-        self.transconv = MultiPatchChannelOutEmbedding(8, 2)
+        self.conv1 = MultiPatchChannelInEmbedding(in_channels, 2)
+        self.transconv = MultiPatchChannelOutEmbedding(8, in_channels)
         
         self.rwattn1 = RelativePositionEmbedding(32, length[0], heads[0])
         self.rwattn2 = RelativePositionEmbedding(16, length[1], heads[1])

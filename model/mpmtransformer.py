@@ -13,7 +13,7 @@ import torch.fx
 from torch.nn.init import trunc_normal_
 import math 
 
-from layers.RevIN import RevIN
+
     
     
 
@@ -695,7 +695,7 @@ def mask_x(tensor, p):
 
 class mpmtransformer(nn.Module):
     def __init__(
-        self, qkv_bias=True, qk_scale=None, attn_drop=0., proj_drop=0., mlp_ratio=4., act_layer=nn.GELU, norm_layer=nn.LayerNorm,  use_partial=True, use_eca=False, pe='abs', use_checkpoint=False, low_level_enhance=True, high_level_enhance=False
+        self, in_channels=15, qkv_bias=True, qk_scale=None, attn_drop=0., proj_drop=0., mlp_ratio=4., act_layer=nn.GELU, norm_layer=nn.LayerNorm,  use_partial=True, use_eca=False, pe='abs', use_checkpoint=False, low_level_enhance=True, high_level_enhance=False
         ) -> None:
         super().__init__()        
         
@@ -704,19 +704,20 @@ class mpmtransformer(nn.Module):
         length = [2**(-i+8) for i in range(5)]
 
         
-        self.revin = RevIN(2)
-        
         self.conv1 = nn.Sequential( 
             nn.Conv1d(2, channels[0], kernel_size=3, padding=1),
             nn.LeakyReLU(0.2),
             nn.BatchNorm1d(channels[0]),
         )
-        self.conv2 = MultiPatchInEmbedding(2, channels[0])
-        self.conv3 = MultiPatchChannelInEmbedding(2, 2)
+        # self.conv2 = MultiPatchInEmbedding(in_channels=in_channels, out_channels_per=channels[0])
+        # self.conv2 = MultiPatchInEmbedding(2, channels[0])
+        # self.conv3 = MultiPatchChannelInEmbedding(in_channels=channels[0], out_channels_per=channels[0])
+        self.conv3 = MultiPatchChannelInEmbedding(in_channels=in_channels, out_channels_per=2)
+        # self.conv3 = MultiPatchChannelInEmbedding(2, 2)
         
         self.transconv = nn.Linear(288, 256)
-        self.transconv2 = nn.Conv1d(8, 2, kernel_size=3, padding=1)
-        self.transconv3 = MultiPatchChannelOutEmbedding(8, 2)
+
+        self.transconv3 = MultiPatchChannelOutEmbedding(channels[0], in_channels)
         
         self.rwattn1 = RelativePositionEmbedding(length[0], length[0], heads[0])
         self.rwattn2 = RelativePositionEmbedding(length[1], length[1], heads[1])
@@ -759,9 +760,7 @@ class mpmtransformer(nn.Module):
         self.ps1 = PatchSeparate(channels[1], norm_layer=norm_layer)
         
         
-        # self.transconv = nn.Sequential(
-        #     nn.Conv1d(channels[0], 2, kernel_size=3, padding=1),
-        # )
+
         
     
     
@@ -769,15 +768,13 @@ class mpmtransformer(nn.Module):
     def forward(self, x, target=None):
         B, C, L = x.shape
         
-        # x = x.permute(0, 2, 1)
-        # x = self.revin(x, 'norm')
-        # x = x.permute(0, 2, 1)
+
         
-        x = mask_x(x, 0.90)
+        x = mask_x(x, 0.85)
         
         
         
-        # x = self.conv1(x)
+
         x = self.conv3(x) 
         
         
@@ -803,21 +800,7 @@ class mpmtransformer(nn.Module):
 
         x_mid = self.transformer(x4)
         
-        # loss = None
-        # if target is not None:
-        #     target = mask_x(target, 0.90)
-        #     target1 = self.conv3(target)
-        #     target2 = rearrange(target1, 'b c l -> b l c')
-        #     target2 = self.dtransformer1(target2)
-        #     target2 = self.pm1(target2)
-        #     target2 = self.dtransformer2(target2)
-        #     target2 = self.pm2(target2)
-        #     target2 = self.dtransformer3(target2, attn3)
-        #     target2 = self.pm3(target2)
-        #     target2 = self.dtransformer34(target2, attn4)
-        #     target2 = self.pm4(target2)
-        #     target2 = self.transformer(target2)
-        #     loss = F.mse_loss(x_mid, target2)
+
 
         x_mid += x4
         
@@ -842,22 +825,16 @@ class mpmtransformer(nn.Module):
         
         out =  self.transconv3(x_1)
         
-        # out = self.transconv2(x_1)
+
                 
-        # out = out.permute(0, 2, 1)
-        # out = self.revin(out, 'denorm')
-        # out = out.permute(0, 2, 1)
+
 
         return out
     
     def get_middle_feature(self, x):
         B, C, L = x.shape
         
-        # x = x.permute(0, 2, 1)
-        # x = self.revin(x, 'norm')
-        # x = x.permute(0, 2, 1)
-        
-        x = mask_x(x, 0.90)
+        x = mask_x(x, 0.85)
         
         
         x = self.conv3(x) 

@@ -78,7 +78,7 @@ class EncoderCell(nn.Module):
 
 
 class DeNoiseEnc(nn.Module):
-    def __init__(self, using_APReLU=True):
+    def __init__(self, in_channels=2, using_APReLU=True):
         super(DeNoiseEnc, self).__init__()
         self.conv_kernel = [17, 17, 3, 3]
         self.paddingsize = [8, 8, 1, 1]
@@ -309,11 +309,11 @@ def alignment_add(tensor1, tensor2, alignment_opt='trunc'):
 
 class DeNoiseDec(nn.Module):
 
-    def __init__(self, ):
+    def __init__(self, out_channels=2) -> None:
         super(DeNoiseDec, self).__init__()
         self.conv_kernel = [4, 4, 18, 18]
         self.paddingsize = [1, 1, 8, 8]
-        self.out_channels = [16, 8, 4, 2]
+        self.out_channels = [16, 8, 4, out_channels]
         DecoderList = []
         for i in range(4):
             if i is not 3:
@@ -340,10 +340,10 @@ class DeNoiseDec(nn.Module):
 
 class Seq2Seq2(nn.Module):
 
-    def __init__(self, ):
+    def __init__(self, in_channels=2) -> None:
         super(Seq2Seq2, self).__init__()
-        self.enc = DeNoiseEnc()
-        self.dec = DeNoiseDec()
+        self.enc = DeNoiseEnc(in_channels=in_channels)
+        self.dec = DeNoiseDec(out_channels=in_channels)
 
     def forward(self, x):
         return self.dec(self.enc(x))
